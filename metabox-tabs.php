@@ -10,7 +10,6 @@
  * Copyright: (c) 2016 Achal Jain
  * License: GNU General Public License v2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: cf-blocks
  */
 
 class MetaBox_Tabs {
