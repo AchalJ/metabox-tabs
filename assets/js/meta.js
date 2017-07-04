@@ -231,6 +231,8 @@
 
                     clone.find('.mbt-fields-group-remove').attr('data-remove-group', nextGroupId);
 
+                    clone.find('.mbt-fields-group-clone').attr('data-clone-group', nextGroupId);
+
                     clone.find('.mbt-fields-group-order .mbt-fields-group-down').addClass('disabled');
 
                     clone.addClass('mbt-fields-group-new');
@@ -272,8 +274,11 @@
             $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-title', 'click', function() {
                 MBT._groupFieldToggle(this);
             } );
-            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-remove', 'click', function() {
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group a.mbt-fields-group-remove', 'click', function() {
                 MBT._groupFieldRemove(this);
+            } );
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group a.mbt-fields-group-clone', 'click', function() {
+                MBT._groupFieldClone(this);
             } );
             $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-up', 'click', function() {
                 MBT._groupFieldMoveUp(this);
@@ -487,6 +492,28 @@
         },
 
         /**
+		 * Clone group.
+		 *
+		 * @since 1.0
+		 * @access private
+		 * @method _groupFieldClone
+		 */
+        _groupFieldClone: function(button)
+        {
+            var groupId = $(button).data('clone-group'),
+                group   = $(button).parents('.mbt-fields-group[data-group-id="'+groupId+'"]'),
+                clone   = group.clone(),
+                parent  = group.parent();
+
+            clone.insertAfter(group);
+
+            parent.find('.mbt-fields-group:first').find('.mbt-fields-group-up').addClass('disabled');
+
+            MBT._resetGroupFieldButtons(parent);
+            MBT._resetGroupFieldIds(parent.find('.mbt-fields-group'));
+        },
+
+        /**
 		 * Shift group up.
 		 *
 		 * @since 1.0
@@ -566,6 +593,8 @@
                 group.find('.mbt-fields-group-title .mbt-group-field-title-text').html(title + ' ' + groupId);
                 // Update group id in remove button.
                 group.find('.mbt-fields-group-remove').attr('data-remove-group', groupId);
+                // Update group id in clone button.
+                group.find('.mbt-fields-group-clone').attr('data-clone-group', groupId);
 
                 // Update sub fields.
                 subFields.forEach(function(obj) {

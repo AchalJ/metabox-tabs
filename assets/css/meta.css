@@ -180,12 +180,19 @@
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-order {
     float: left;
 }
-.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-order .button span {
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .button span.dashicons {
     line-height: 1.2;
 }
-.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-remove {
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-remove,
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-clone {
     text-align: right;
     float: right;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-remove {
+    color: #bf3e34;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer div.mbt-fields-group-clone {
+    margin-right: 5px;
 }
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-action {
     text-align: left;
