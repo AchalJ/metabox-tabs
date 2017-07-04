@@ -12,7 +12,10 @@ $group_field_info = array();
 
     <script type="text/html" class="mbt-fields-group-template">
         <div class="mbt-fields-group" data-group-id="1" data-group-title="<?php echo $group_title; ?>" data-field-name="<?php echo $name; ?>">
-            <h4 class="mbt-fields-group-title"><?php echo $group_title . ' 1'; ?></h4>
+            <h4 class="mbt-fields-group-title">
+                <span class="mbt-group-field-title-text"><?php echo $group_title . ' 1'; ?></span>
+                <span class="mbt-group-field-unsaved"> - <?php esc_html_e('Unsaved', 'mbt'); ?></span>
+            </h4>
             <div class="mbt-fields-group-inner">
                 <table class="mbt-metabox-form-table form-table">
                     <?php
@@ -47,7 +50,10 @@ $group_field_info = array();
 
     <?php if ( ! is_array( $value ) ) : $group_field_info = array(); ?>
         <div class="mbt-fields-group" data-group-id="1" data-group-title="<?php echo $group_title; ?>" data-field-name="<?php echo $name; ?>">
-            <h4 class="mbt-fields-group-title"><?php echo $group_title . ' 1'; ?></h4>
+            <h4 class="mbt-fields-group-title">
+                <span class="mbt-group-field-title-text"><?php echo $group_title . ' 1'; ?></span>
+                <span class="mbt-group-field-unsaved"> - <?php esc_html_e('Unsaved', 'mbt'); ?></span>
+            </h4>
             <div class="mbt-fields-group-inner">
                 <table class="mbt-metabox-form-table form-table">
                     <?php
@@ -81,7 +87,10 @@ $group_field_info = array();
     <?php else : ?>
         <?php foreach ( $value as $group_id => $field_value ) : $group_field_info = array(); ?>
             <div class="mbt-fields-group" data-group-id="<?php echo $group_id; ?>" data-group-title="<?php echo $group_title; ?>" data-field-name="<?php echo $name; ?>">
-                <h4 class="mbt-fields-group-title"><?php echo $group_title . ' ' . $group_id; ?></h4>
+                <h4 class="mbt-fields-group-title">
+                    <span class="mbt-group-field-title-text"><?php echo $group_title . ' ' . $group_id; ?></span>
+                    <span class="mbt-group-field-unsaved"> - <?php esc_html_e('Unsaved', 'mbt'); ?></span>
+                </h4>
                 <div class="mbt-fields-group-inner">
                     <table class="mbt-metabox-form-table form-table">
                         <?php
