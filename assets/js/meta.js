@@ -209,7 +209,7 @@
 
                     // Reset all data of clone object.
                     clone.attr('data-group-id', nextGroupId);
-                    clone.find('.mbt-fields-group-title').html(title + ' ' + nextGroupId);
+                    clone.find('.mbt-fields-group-title .mbt-group-field-title-text').html(title + ' ' + nextGroupId);
 
                     clone.find('tr.mbt-field[id*='+fieldId+']').each(function() {
                         var fieldName       = $(this).attr('id').split('[1]')[0].split('mbt-field-')[1];
@@ -231,14 +231,19 @@
 
                     clone.find('.mbt-fields-group-remove').attr('data-remove-group', nextGroupId);
 
+                    clone.find('.mbt-fields-group-clone').attr('data-clone-group', nextGroupId);
+
                     clone.find('.mbt-fields-group-order .mbt-fields-group-down').addClass('disabled');
+
+                    clone.addClass('mbt-fields-group-new');
 
                     clone.insertBefore($(this).parent());
 
                     // Reset group ids.
                     MBT._resetGroupFieldIds($this.find('.mbt-fields-group'));
 
-                    $this.find('.mbt-fields-group-footer').show();
+                    $this.find('.mbt-fields-group-footer .mbt-fields-group-order').show();
+                    $this.find('.mbt-fields-group-footer .mbt-fields-group-remove').show();
 
                     firstGroup.find('.mbt-fields-group-order .mbt-fields-group-up').addClass('disabled');
                 });
@@ -269,8 +274,11 @@
             $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-title', 'click', function() {
                 MBT._groupFieldToggle(this);
             } );
-            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-remove', 'click', function() {
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group a.mbt-fields-group-remove', 'click', function() {
                 MBT._groupFieldRemove(this);
+            } );
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group a.mbt-fields-group-clone', 'click', function() {
+                MBT._groupFieldClone(this);
             } );
             $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-up', 'click', function() {
                 MBT._groupFieldMoveUp(this);
@@ -473,12 +481,36 @@
                 complete: function() {
                     $(this).remove();
                     if ( parent.find('.mbt-fields-group').length === 1 ) {
-                        parent.find('.mbt-fields-group .mbt-fields-group-footer').hide();
+                        parent.find('.mbt-fields-group .mbt-fields-group-footer .mbt-fields-group-order').hide();
+                        parent.find('.mbt-fields-group .mbt-fields-group-footer .mbt-fields-group-remove').hide();
                     }
                     parent.find('.mbt-fields-group:first').find('.mbt-fields-group-up').addClass('disabled');
+                    MBT._resetGroupFieldButtons(parent);
                     MBT._resetGroupFieldIds(parent.find('.mbt-fields-group'));
                 }
             });
+        },
+
+        /**
+		 * Clone group.
+		 *
+		 * @since 1.0
+		 * @access private
+		 * @method _groupFieldClone
+		 */
+        _groupFieldClone: function(button)
+        {
+            var groupId = $(button).data('clone-group'),
+                group   = $(button).parents('.mbt-fields-group[data-group-id="'+groupId+'"]'),
+                clone   = group.clone(),
+                parent  = group.parent();
+
+            clone.insertAfter(group);
+
+            parent.find('.mbt-fields-group:first').find('.mbt-fields-group-up').addClass('disabled');
+
+            MBT._resetGroupFieldButtons(parent);
+            MBT._resetGroupFieldIds(parent.find('.mbt-fields-group'));
         },
 
         /**
@@ -558,9 +590,11 @@
                 // Update group id.
                 group.attr('data-group-id', groupId);
                 // Update group title.
-                group.find('.mbt-fields-group-title').html(title + ' ' + groupId);
+                group.find('.mbt-fields-group-title .mbt-group-field-title-text').html(title + ' ' + groupId);
                 // Update group id in remove button.
                 group.find('.mbt-fields-group-remove').attr('data-remove-group', groupId);
+                // Update group id in clone button.
+                group.find('.mbt-fields-group-clone').attr('data-clone-group', groupId);
 
                 // Update sub fields.
                 subFields.forEach(function(obj) {

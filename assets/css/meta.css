@@ -143,6 +143,7 @@
 }
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-title {
     background: #f9f9f9;
+    border-bottom: 1px solid #eee;
     margin: -10px;
     padding: 10px;
     cursor: pointer;
@@ -157,6 +158,16 @@
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-title.open:after {
     content: "\f142";
 }
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-title span.mbt-group-field-unsaved {
+    display: none;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 400;
+    color: #999;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group.mbt-fields-group-new .mbt-fields-group-title span.mbt-group-field-unsaved {
+    display: inline;
+}
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper a.disabled {
     pointer-events: none;
     cursor: default;
@@ -169,12 +180,19 @@
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-order {
     float: left;
 }
-.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-order .button span {
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .button span.dashicons {
     line-height: 1.2;
 }
-.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-remove {
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-remove,
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-clone {
     text-align: right;
     float: right;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer .mbt-fields-group-remove {
+    color: #bf3e34;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-footer div.mbt-fields-group-clone {
+    margin-right: 5px;
 }
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group-wrapper .mbt-fields-group-action {
     text-align: left;

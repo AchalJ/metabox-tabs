@@ -12,7 +12,10 @@ $group_field_info = array();
 
     <script type="text/html" class="mbt-fields-group-template">
         <div class="mbt-fields-group" data-group-id="1" data-group-title="<?php echo $group_title; ?>" data-field-name="<?php echo $name; ?>">
-            <h4 class="mbt-fields-group-title"><?php echo $group_title . ' 1'; ?></h4>
+            <h4 class="mbt-fields-group-title">
+                <span class="mbt-group-field-title-text"><?php echo $group_title . ' 1'; ?></span>
+                <span class="mbt-group-field-unsaved"> - <?php esc_html_e('Unsaved', 'mbt'); ?></span>
+            </h4>
             <div class="mbt-fields-group-inner">
                 <table class="mbt-metabox-form-table form-table">
                     <?php
@@ -38,7 +41,10 @@ $group_field_info = array();
                         <a href="javascript:void(0)" class="button mbt-fields-group-down"><span class="dashicons dashicons-arrow-down-alt2"></span></a>
                     </div>
                     <div class="mbt-fields-group-remove">
-                        <a href="javascript:void(0)" class="button mbt-fields-group-remove"><?php esc_html_e('Remove', 'mbt'); ?></a>
+                        <a href="javascript:void(0)" class="button mbt-fields-group-remove" title="<?php esc_html_e('Remove', 'mbt'); ?>" data-remove-group="1"><span class="dashicons dashicons-trash"></span></a>
+                    </div>
+                    <div class="mbt-fields-group-clone">
+                        <a href="javascript:void(0)" class="button mbt-fields-group-clone" title="<?php esc_html_e('Duplicate', 'mbt'); ?>" data-clone-group="1"><span class="dashicons dashicons-admin-page"></span></a>
                     </div>
                 </div>
             </div>
@@ -47,7 +53,10 @@ $group_field_info = array();
 
     <?php if ( ! is_array( $value ) ) : $group_field_info = array(); ?>
         <div class="mbt-fields-group" data-group-id="1" data-group-title="<?php echo $group_title; ?>" data-field-name="<?php echo $name; ?>">
-            <h4 class="mbt-fields-group-title"><?php echo $group_title . ' 1'; ?></h4>
+            <h4 class="mbt-fields-group-title">
+                <span class="mbt-group-field-title-text"><?php echo $group_title . ' 1'; ?></span>
+                <span class="mbt-group-field-unsaved"> - <?php esc_html_e('Unsaved', 'mbt'); ?></span>
+            </h4>
             <div class="mbt-fields-group-inner">
                 <table class="mbt-metabox-form-table form-table">
                     <?php
@@ -73,7 +82,10 @@ $group_field_info = array();
                         <a href="javascript:void(0)" class="button mbt-fields-group-down"><span class="dashicons dashicons-arrow-down-alt2"></span></a>
                     </div>
                     <div class="mbt-fields-group-remove">
-                        <a href="javascript:void(0)" class="button mbt-fields-group-remove"><?php esc_html_e('Remove', 'mbt'); ?></a>
+                        <a href="javascript:void(0)" class="button mbt-fields-group-remove" title="<?php esc_html_e('Remove', 'mbt'); ?>" data-remove-group="1"><span class="dashicons dashicons-trash"></span></a>
+                    </div>
+                    <div class="mbt-fields-group-clone">
+                        <a href="javascript:void(0)" class="button mbt-fields-group-clone" title="<?php esc_html_e('Duplicate', 'mbt'); ?>" data-clone-group="1"><span class="dashicons dashicons-admin-page"></span></a>
                     </div>
                 </div>
             </div>
@@ -81,7 +93,10 @@ $group_field_info = array();
     <?php else : ?>
         <?php foreach ( $value as $group_id => $field_value ) : $group_field_info = array(); ?>
             <div class="mbt-fields-group" data-group-id="<?php echo $group_id; ?>" data-group-title="<?php echo $group_title; ?>" data-field-name="<?php echo $name; ?>">
-                <h4 class="mbt-fields-group-title"><?php echo $group_title . ' ' . $group_id; ?></h4>
+                <h4 class="mbt-fields-group-title">
+                    <span class="mbt-group-field-title-text"><?php echo $group_title . ' ' . $group_id; ?></span>
+                    <span class="mbt-group-field-unsaved"> - <?php esc_html_e('Unsaved', 'mbt'); ?></span>
+                </h4>
                 <div class="mbt-fields-group-inner">
                     <table class="mbt-metabox-form-table form-table">
                         <?php
@@ -110,7 +125,10 @@ $group_field_info = array();
                                 <a href="javascript:void(0)" class="button mbt-fields-group-down"><span class="dashicons dashicons-arrow-down-alt2"></span></a>
                             </div>
                             <div class="mbt-fields-group-remove">
-                                <a href="javascript:void(0)" class="button mbt-fields-group-remove" data-remove-group="<?php echo $group_id; ?>"><?php esc_html_e('Remove', 'mbt'); ?></a>
+                                <a href="javascript:void(0)" class="button mbt-fields-group-remove" title="<?php esc_html_e('Remove', 'mbt'); ?>" data-remove-group="<?php echo $group_id; ?>"><span class="dashicons dashicons-trash"></span></a>
+                            </div>
+                            <div class="mbt-fields-group-clone">
+                                <a href="javascript:void(0)" class="button mbt-fields-group-clone" title="<?php esc_html_e('Duplicate', 'mbt'); ?>" data-clone-group="<?php echo $group_id; ?>"><span class="dashicons dashicons-admin-page"></span></a>
                             </div>
                         </div>
                     <?php endif; ?>
