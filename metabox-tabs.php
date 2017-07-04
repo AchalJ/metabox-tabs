@@ -2,15 +2,14 @@
 
 /**
  * Plugin Name: MetaBox Tabs
- * Plugin URI:
+ * Plugin URI: https://github.com/AchalJ/metabox-tabs
  * Description: MetaBox Tabs
  * Version: 1.0
  * Author: Achal Jain
- * Author URI:
+ * Author URI: https://github.com/AchalJ/
  * Copyright: (c) 2016 Achal Jain
  * License: GNU General Public License v2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: cf-blocks
  */
 
 class MetaBox_Tabs {
