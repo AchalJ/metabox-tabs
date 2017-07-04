@@ -76,7 +76,7 @@ $group_field_info = array();
                     ?>
                 </table>
                 <div class="mbt-fields-group-info" data-info="<?php echo esc_attr(json_encode($group_field_info)); ?>"></div>
-                <div class="mbt-fields-group-footer wp-clearfix" style="display: none;">
+                <div class="mbt-fields-group-footer wp-clearfix">
                     <div class="mbt-fields-group-order">
                         <a href="javascript:void(0)" class="button mbt-fields-group-up"><span class="dashicons dashicons-arrow-up-alt2"></span></a>
                         <a href="javascript:void(0)" class="button mbt-fields-group-down"><span class="dashicons dashicons-arrow-down-alt2"></span></a>
