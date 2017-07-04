@@ -118,20 +118,18 @@ $group_field_info = array();
                         ?>
                     </table>
                     <div class="mbt-fields-group-info" data-info="<?php echo esc_attr(json_encode($group_field_info)); ?>"></div>
-                    <?php if ( count( $value ) > 1 ) : ?>
-                        <div class="mbt-fields-group-footer wp-clearfix">
-                            <div class="mbt-fields-group-order">
-                                <a href="javascript:void(0)" class="button mbt-fields-group-up"><span class="dashicons dashicons-arrow-up-alt2"></span></a>
-                                <a href="javascript:void(0)" class="button mbt-fields-group-down"><span class="dashicons dashicons-arrow-down-alt2"></span></a>
-                            </div>
-                            <div class="mbt-fields-group-remove">
-                                <a href="javascript:void(0)" class="button mbt-fields-group-remove" title="<?php esc_html_e('Remove', 'mbt'); ?>" data-remove-group="<?php echo $group_id; ?>"><span class="dashicons dashicons-trash"></span></a>
-                            </div>
-                            <div class="mbt-fields-group-clone">
-                                <a href="javascript:void(0)" class="button mbt-fields-group-clone" title="<?php esc_html_e('Duplicate', 'mbt'); ?>" data-clone-group="<?php echo $group_id; ?>"><span class="dashicons dashicons-admin-page"></span></a>
-                            </div>
+                    <div class="mbt-fields-group-footer wp-clearfix">
+                        <div class="mbt-fields-group-order">
+                            <a href="javascript:void(0)" class="button mbt-fields-group-up"><span class="dashicons dashicons-arrow-up-alt2"></span></a>
+                            <a href="javascript:void(0)" class="button mbt-fields-group-down"><span class="dashicons dashicons-arrow-down-alt2"></span></a>
                         </div>
-                    <?php endif; ?>
+                        <div class="mbt-fields-group-remove">
+                            <a href="javascript:void(0)" class="button mbt-fields-group-remove" title="<?php esc_html_e('Remove', 'mbt'); ?>" data-remove-group="<?php echo $group_id; ?>"><span class="dashicons dashicons-trash"></span></a>
+                        </div>
+                        <div class="mbt-fields-group-clone">
+                            <a href="javascript:void(0)" class="button mbt-fields-group-clone" title="<?php esc_html_e('Duplicate', 'mbt'); ?>" data-clone-group="<?php echo $group_id; ?>"><span class="dashicons dashicons-admin-page"></span></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>

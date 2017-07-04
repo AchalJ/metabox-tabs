@@ -207,6 +207,7 @@
 
                     groups.each(function() {
                         $(this).find('.mbt-fields-group-title').next().slideUp(0);
+                        groups.find('a.mbt-fields-group-remove').removeClass('disabled');
                     });
 
                     groups.find('.mbt-fields-group-order a').removeClass('disabled');
@@ -246,8 +247,8 @@
                     // Reset group ids.
                     MBT._resetGroupFieldIds($this.find('.mbt-fields-group'));
 
-                    $this.find('.mbt-fields-group-footer .mbt-fields-group-order').show();
-                    $this.find('.mbt-fields-group-footer .mbt-fields-group-remove').show();
+                    $this.find('.mbt-fields-group-footer a.mbt-fields-group-order').removeClass('disabled');
+                    $this.find('.mbt-fields-group-footer a.mbt-fields-group-remove').removeClass('disabled');
 
                     firstGroup.find('.mbt-fields-group-order .mbt-fields-group-up').addClass('disabled');
                 });
@@ -485,8 +486,8 @@
                 complete: function() {
                     $(this).remove();
                     if ( parent.find('.mbt-fields-group').length === 1 ) {
-                        parent.find('.mbt-fields-group .mbt-fields-group-footer .mbt-fields-group-order').hide();
-                        parent.find('.mbt-fields-group .mbt-fields-group-footer .mbt-fields-group-remove').hide();
+                        parent.find('.mbt-fields-group .mbt-fields-group-footer .mbt-fields-group-order a').addClass('disabled');
+                        parent.find('.mbt-fields-group .mbt-fields-group-footer a.mbt-fields-group-remove').addClass('disabled');
                     }
                     parent.find('.mbt-fields-group:first').find('.mbt-fields-group-up').addClass('disabled');
                     MBT._resetGroupFieldButtons(parent);
@@ -569,6 +570,9 @@
             groupsParent.find('.mbt-fields-group:first').find('.mbt-fields-group-down').removeClass('disabled');
             groupsParent.find('.mbt-fields-group:last').find('.mbt-fields-group-up').removeClass('disabled');
             groupsParent.find('.mbt-fields-group:last').find('.mbt-fields-group-down').addClass('disabled');
+            if ( groupsParent.find('.mbt-fields-group').length > 1 ) {
+                groupsParent.find('.mbt-fields-group .mbt-fields-group-remove').removeClass('disabled');
+            }
         },
 
         /**
