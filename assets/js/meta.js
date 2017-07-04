@@ -193,12 +193,17 @@
 
                     var fieldId     = $this.attr('id'),
                         wrapper     = $this.find('.mbt-fields-group-wrapper'),
+                        groups      = $this.find('.mbt-fields-group'),
                         firstGroup  = $this.find('.mbt-fields-group:first'),
                         lastGroup   = $this.find('.mbt-fields-group:last'),
                         clone       = $($this.find('.mbt-fields-group-template').html()),
                         groupId     = parseInt(lastGroup.data('group-id')),
                         nextGroupId = groupId + 1,
                         title       = clone.data('group-title');
+
+                    groups.each(function() {
+                        $(this).find('.mbt-fields-group-title').next().slideUp(0);
+                    });
 
                     groups.find('.mbt-fields-group-order a').removeClass('disabled');
 

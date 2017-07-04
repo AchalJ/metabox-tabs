@@ -395,7 +395,7 @@ class MetaBox_Tabs {
 MetaBox_Tabs::init();
 
 MetaBox_Tabs::add_meta_box( array(
-    'id'            => 'mbt_custom_box',
+    'id'            => 'mbt_custom_box_',
     'title'         => 'Custom Metabox',
     'object_types'  => array('post'),
     'context'       => 'normal',
