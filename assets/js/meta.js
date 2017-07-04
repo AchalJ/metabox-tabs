@@ -187,6 +187,10 @@
                 firstGroup.find('.mbt-fields-group-order .mbt-fields-group-up').addClass('disabled');
                 lastGroup.find('.mbt-fields-group-order .mbt-fields-group-down').addClass('disabled');
 
+                if ( groups.length === 1 ) {
+                    groups.find('a.mbt-fields-group-remove').addClass('disabled');
+                }
+
                 $this.find('.mbt-fields-group-action').on('click', '.mbt-fields-group-add', function(e) {
 
                     e.preventDefault();
