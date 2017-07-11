@@ -13,7 +13,7 @@
  */
 
 if ( ! class_exists( 'MetaBox_Tabs', false ) ) {
-    
+
     class MetaBox_Tabs {
 
         const VERSION = '1.0';
@@ -126,8 +126,8 @@ if ( ! class_exists( 'MetaBox_Tabs', false ) ) {
                     wp_enqueue_script( 'wp-color-picker' );
                     //wp_enqueue_style( 'select2-style', 'assets/vendor/select2/select2.css', array() );
             		//wp_enqueue_script( 'select2-script', 'assets/vendor/select2/select2.full.js', array('jquery') );
-                    wp_enqueue_style( 'mbt-metabox-style', MBT_URL . '/assets/css/meta.css', array() );
-                    wp_enqueue_script( 'mbt-metabox-script', MBT_URL . '/assets/js/meta.js', array('jquery'), true );
+                    wp_enqueue_style( 'mbt-metabox-style', MBT_URL . 'assets/css/meta.css', array() );
+                    wp_enqueue_script( 'mbt-metabox-script', MBT_URL . 'assets/js/meta.js', array('jquery'), true );
                 }
             }
         }
