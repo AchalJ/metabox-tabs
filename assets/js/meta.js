@@ -307,6 +307,7 @@
             var field   = $(input),
                 id      = field.attr('id'),
                 toggle  = field.data('toggle'),
+                hide    = field.data('hide'),
                 val     = field.val(),
                 i       = 0;
 
@@ -337,6 +338,20 @@
     				MBT._fieldToggle(toggle[val].fields, 'show', '#mbt-field-');
     				MBT._fieldToggle(toggle[val].sections, 'show', '#mbt-metabox-section-');
                     MBT._fieldToggle(toggle[i].tabs, 'show', 'li.mbt-metabox-tab[data-tab=', ']');
+    			}
+    		}
+
+            // HIDE sections or fields.
+    		if ( typeof hide !== 'undefined' ) {
+
+                if ( typeof hide !== 'object' ) {
+    			    hide = JSON.parse(hide);
+                }
+
+    			if(typeof hide[val] !== 'undefined') {
+    				MBT._fieldToggle(hide[val].fields, 'hide', '#mbt-field-');
+    				MBT._fieldToggle(hide[val].sections, 'hide', '#mbt-metabox-section-');
+                    MBT._fieldToggle(hide[i].tabs, 'hide', 'li.mbt-metabox-tab[data-tab=', ']');
     			}
     		}
         },

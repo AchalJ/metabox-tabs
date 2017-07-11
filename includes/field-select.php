@@ -11,6 +11,11 @@
         $attrs .= ' data-toggle="' . esc_attr( json_encode( $field['toggle'] ) ) . '"';
     }
 
+    // Hide data.
+    if ( isset( $field['hide'] ) ) {
+        $attrs .= ' data-hide="' . esc_attr( json_encode( $field['hide'] ) ) . '"';
+    }
+
     // Browser's Autocomplete Off.
     $attrs .= ' autocomplete="off"';
 
