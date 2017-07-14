@@ -26,6 +26,16 @@
     border-left: 1px solid #eee;
 }
 
+.mbt-metabox-tabs-wrapper .mbt-metabox-form-table th.mbt-field-label {
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.mbt-metabox-tabs-wrapper .mbt-metabox-form-table th.mbt-field-label,
+.mbt-metabox-tabs-wrapper .mbt-metabox-form-table td.mbt-field-control {
+    font-size: 13px;
+}
+
 .mbt-metabox-tabs-wrapper .mbt-metabox-tabs,
 .mbt-metabox-tabs-wrapper .mbt-metabox-tabs .mbt-metabox-tab {
     margin: 0;
