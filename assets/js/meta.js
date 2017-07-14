@@ -122,7 +122,13 @@
                 // Add Color Picker to all inputs that have 'mbt-color-picker' class.
                 $( '.mbt-color-picker' ).each(function() {
                     var color = $(this).val();
-                    $(this).wpColorPicker().parents('.wp-picker-container').find('.wp-color-result').css('background-color', '#' + color);
+                    $(this).wpColorPicker({
+                        change: function(event, ui) {
+                            var element = event.target;
+                            var color = ui.color.toString();
+                            $(element).parents('.wp-picker-container').find('input.mbt-color-picker').val(color).trigger('change');
+                        }
+                    }).parents('.wp-picker-container').find('.wp-color-result').css('background-color', '#' + color);
                 });
             }
         },
@@ -337,7 +343,7 @@
     			if(typeof toggle[val] !== 'undefined') {
     				MBT._fieldToggle(toggle[val].fields, 'show', '#mbt-field-');
     				MBT._fieldToggle(toggle[val].sections, 'show', '#mbt-metabox-section-');
-                    MBT._fieldToggle(toggle[i].tabs, 'show', 'li.mbt-metabox-tab[data-tab=', ']');
+                    MBT._fieldToggle(toggle[val].tabs, 'show', 'li.mbt-metabox-tab[data-tab=', ']');
     			}
     		}
 
@@ -351,7 +357,7 @@
     			if(typeof hide[val] !== 'undefined') {
     				MBT._fieldToggle(hide[val].fields, 'hide', '#mbt-field-');
     				MBT._fieldToggle(hide[val].sections, 'hide', '#mbt-metabox-section-');
-                    MBT._fieldToggle(hide[i].tabs, 'hide', 'li.mbt-metabox-tab[data-tab=', ']');
+                    MBT._fieldToggle(hide[val].tabs, 'hide', 'li.mbt-metabox-tab[data-tab=', ']');
     			}
     		}
         },

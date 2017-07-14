@@ -21,7 +21,7 @@
 .mbt-metabox-tabs-wrapper .mbt-col-right {
     float: left;
     background: #fff;
-    min-height: 200px;
+    min-height: 250px;
     width: calc(100% - 120px);
     border-left: 1px solid #eee;
 }
