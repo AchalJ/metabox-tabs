@@ -145,6 +145,98 @@
     padding-left: 10px;
 }
 
+/* posts */
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field {
+    position: relative;
+    display: inline-block;
+    width: 335px;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field .mbt-suggest-placeholder {
+    position: absolute;
+    display: block;
+    padding: 7px;
+    color: #999;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field.mbt-suggest-has-data .mbt-suggest-placeholder {
+    display: none;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field .mbt-suggest-select {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    min-height: 30px;
+    cursor: pointer;
+    position: relative;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field.mbt-suggest-field-active .mbt-suggest-select {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-color: transparent;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field .mbt-suggest-select > span {
+    background: #eee;
+    padding: 3px 7px;
+    padding-left: 0;
+    display: inline-block;
+    margin-left: 3px;
+    margin-top: 2px;
+    max-width: 48%;
+    white-space: nowrap;
+    overflow: hidden;
+    clear: none;
+    user-select: none;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field .mbt-suggest-select > span span.mbt-selected-remove {
+    padding: 2px 4px;
+    font-weight: bold;
+    font-size: 14px;
+    user-select: none;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field .mbt-suggest-select span:hover {
+    background: #ddd;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field ul.mbt-suggest-items {
+    position: absolute;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    width: 335px;
+    max-height: 206px;
+    overflow-y: auto;
+    z-index: 9999;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field.mbt-suggest-field-active ul.mbt-suggest-items {
+    opacity: 1;
+    visibility: visible;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field li {
+    padding: 0 10px;
+    margin: 0;
+    cursor: pointer;
+    user-select: none;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field li input.mbt-suggest-search-input {
+    margin: 10px 0;
+    width: 100%;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field li.mbt-suggest-item:hover {
+    background: #eee;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field li.mbt-suggest-item label {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    padding: 8px 0;
+    width: 100%;
+    user-select: none;
+}
+.mbt-metabox-tabs-wrapper .mbt-field .mbt-suggest-field li.mbt-suggest-item input {
+    box-shadow: none !important;
+}
+
 /* group */
 .mbt-metabox-tabs-wrapper .mbt-field .mbt-fields-group {
     border: 1px solid #eee;

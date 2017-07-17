@@ -106,6 +106,7 @@
 
             MBT._initColorField();
             MBT._initPhotoField();
+            MBT._initSuggestField();
             MBT._initGroupField();
         },
 
@@ -155,6 +156,24 @@
                     wrapper.find('.mbt-img-action .mbt-upload-img').addClass('hidden');
                     wrapper.find('.mbt-img-action .mbt-delete-img').removeClass('hidden');
                 }
+            });
+        },
+
+        _initSuggestField: function()
+        {
+            if ( $('.mbt-field[data-type="suggest"]').length === 0 ) {
+                return;
+            }
+
+            $(document).on('click', function(e) {
+                if ( ! $('.mbt-suggest-field').is(e.target) && $('.mbt-suggest-field').has(e.target).length === 0 && e.which ) {
+                    $('.mbt-suggest-field').removeClass('mbt-suggest-field-active');
+                }
+            });
+
+            $('.mbt-field[data-type="suggest"]').each(function() {
+                var select          = $(this).find('.mbt-suggest-select'),
+                    itemsContainer  = $(this).find('.mbt-suggest-items');
             });
         },
 
@@ -281,6 +300,15 @@
             $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-field[data-type="photo"] a.mbt-delete-img', 'click', function(e) {
                 e.preventDefault();
                 MBT._imageRemoveTrigger(this);
+            } );
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-field[data-type="suggest"] .mbt-suggest-select', 'click', function() {
+                MBT._suggestFieldTrigger(this);
+            } );
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-field[data-type="suggest"] .mbt-suggest-item input[type="checkbox"]', 'change', function() {
+                MBT._suggestFieldChange(this);
+            } );
+            $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-field[data-type="suggest"] .mbt-suggest-search-input', 'keyup search', function() {
+                MBT._suggestFieldSearch(this);
             } );
             $('body').delegate( '.mbt-metabox-tabs-wrapper .mbt-fields-group .mbt-fields-group-title', 'click', function() {
                 MBT._groupFieldToggle(this);
@@ -465,6 +493,82 @@
 
             // Delete the image url from the url input
             imgUrlField.val( '' );
+        },
+
+        _suggestFieldTrigger: function(select)
+        {
+            var select          = $(select),
+                wrapper         = select.parents('.mbt-suggest-field'),
+                activeClass     = 'mbt-suggest-field-active';
+
+            wrapper.toggleClass(activeClass);
+            wrapper.find('input.mbt-suggest-search-input').val('').focus().trigger('keyup');
+        },
+
+        _suggestFieldChange: function(input)
+        {
+            var input   = $(input),
+                value   = input.val(),
+                label   = input.data('label'),
+                wrapper = input.parents('.mbt-suggest-field');
+
+            if ( input.is(':checked') ) {
+                var span = '<span class="mbt-selected-' + value + '" data-post-id="' + value + '">';
+                span += '<span class="mbt-selected-remove">×</span><span>' + label + '</span>';
+                span += '</span>';
+
+                wrapper.find('.mbt-suggest-select').append(span);
+
+                wrapper.find('.mbt-suggest-select').find('span.mbt-selected-remove').on('click', function(e) {
+                    e.stopPropagation();
+                    MBT._suggestSelectedRemove(this);
+                });
+
+                input.addClass('mbt-selected-' + value);
+            }
+            if ( ! input.is(':checked') ) {
+                wrapper.find('.mbt-suggest-select span.mbt-selected-' + value).remove();
+                input.removeClass('mbt-selected-' + value);
+            }
+
+            if ( wrapper.find('.mbt-suggest-select > span').length > 0 ) {
+                wrapper.addClass('mbt-suggest-has-data');
+            } else {
+                wrapper.removeClass('mbt-suggest-has-data');
+            }
+        },
+
+        _suggestSelectedRemove: function(element)
+        {
+            var selected    = $(element).parent(),
+                postID      = selected.data('post-id'),
+                wrapper     = selected.parents('.mbt-suggest-field');
+
+            wrapper.find('input.mbt-selected-' + postID).removeAttr('checked');
+            selected.remove();
+        },
+
+        _suggestFieldSearch: function(input)
+        {
+            var input   = $(input),
+                wrapper = input.parents('.mbt-suggest-field');
+                options = wrapper.find('.mbt-suggest-items .mbt-suggest-item');
+
+            options.hide();
+
+            if ( input.val().length >= 1 ) {
+                var searchTerm = input.val().toLowerCase().trim();
+                options.each(function() {
+                    var text = $(this).find('input[type="checkbox"]').data('label').toLowerCase().trim();
+                    if ( text.search(searchTerm) !== -1 ) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                options.show();
+            }
         },
 
         /**
