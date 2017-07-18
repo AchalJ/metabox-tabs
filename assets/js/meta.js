@@ -533,7 +533,8 @@
 
             if ( wrapper.find('.mbt-suggest-select > span').length > 0 ) {
                 wrapper.addClass('mbt-suggest-has-data');
-            } else {
+            }
+            if ( wrapper.find('.mbt-suggest-select > span').length === 0 ) {
                 wrapper.removeClass('mbt-suggest-has-data');
             }
         },

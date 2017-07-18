@@ -82,9 +82,20 @@ class MetaBox_Tabs_Helper {
 	 * @param array $exclude Taxonomies to be excluded.
 	 * @return array
 	 */
-	static public function taxonomies( $post_type, $exclude = array() )
+	static public function taxonomies( $post_type = '', $exclude = array() )
 	{
-		$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+        if ( empty( $post_type ) ) {
+            $taxonomies = get_taxonomies(
+				array(
+					'public'       => true,
+					'_builtin'     => false
+				),
+				'objects'
+			);
+        } else {
+		    $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+        }
+
 		$data		= array();
 
 		foreach ( $taxonomies as $tax_slug => $tax ) {
@@ -117,7 +128,7 @@ class MetaBox_Tabs_Helper {
             return $options;
         }
 
-        if ( empty( $action ) || empty( $options ) ) {
+        if ( empty( $action ) ) {
             return;
         }
 
@@ -125,34 +136,41 @@ class MetaBox_Tabs_Helper {
 
         switch ( $action ) {
             case 'get_posts':
-                $posts = self::posts( $options );
-                if ( ! empty( $posts ) ) {
-                    foreach ( $posts as $post ) {
-                        $data[$post->ID] = $post->post_title;
+                if ( ! empty( $options ) ) {
+                    $posts = self::posts( $options );
+                    if ( ! empty( $posts ) ) {
+                        foreach ( $posts as $post ) {
+                            $data[$post->ID] = $post->post_title;
+                        }
                     }
                 }
                 break;
             case 'get_taxonomies':
-                $post_type  = isset( $options['post_type'] ) ? $options['post_type'] : '';
-                $exclude    = isset( $options['exclude'] ) ? $options['post_type'] : array();
-                $taxonomies = '';
-                if ( ! empty( $post_type ) ) {
+                if ( ! empty( $options ) ) {
+                    $post_type  = isset( $options['post_type'] ) ? $options['post_type'] : '';
+                    $exclude    = isset( $options['exclude'] ) ? $options['post_type'] : array();
                     $taxonomies = self::taxonomies( $post_type, $exclude );
-                }
-                if ( ! empty( $taxonomies ) ) {
-                    foreach ( $taxonomies as $slug => $tax ) {
-                        $data[$slug] = $tax->label;
+                    if ( ! empty( $taxonomies ) ) {
+                        foreach ( $taxonomies as $slug => $tax ) {
+                            $data[$slug] = $tax->label;
+                        }
                     }
                 }
                 break;
             case 'get_post_types':
-                $exclude    = isset( $options['exclude'] ) ? $options['post_type'] : array();
-                $post_types = self::post_types( $exclude );
-                if ( ! empty( $post_types ) ) {
-                    foreach ( $post_types as $slug => $type ) {
-                        $data[$slug] = $type->labels->name;
+                if ( ! empty( $options ) ) {
+                    $exclude    = isset( $options['exclude'] ) ? $options['post_type'] : array();
+                    $post_types = self::post_types( $exclude );
+                    if ( ! empty( $post_types ) ) {
+                        foreach ( $post_types as $slug => $type ) {
+                            $data[$slug] = $type->labels->name;
+                        }
                     }
                 }
+                break;
+            case 'get_locations':
+                $type = ( ! empty( $options ) && isset( $options['type'] ) ) ? $options['type'] : '';
+                $data = MetaBox_Tabs_Location_Rules::locations( $type );
                 break;
             default:
                 break;

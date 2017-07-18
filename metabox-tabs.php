@@ -65,6 +65,7 @@ if ( ! class_exists( 'MetaBox_Tabs', false ) ) {
             define( 'MBT_DIR', self::get_dir() );
             define( 'MBT_URL', self::get_url() );
 
+            require_once MBT_DIR . 'classes/class-mbt-location-rules.php';
             require_once MBT_DIR . 'classes/class-mbt-helper.php';
             require_once MBT_DIR . 'classes/class-mbt-ajax.php';
 
