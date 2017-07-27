@@ -304,6 +304,9 @@
 .mbt-metabox-tabs-wrapper .mbt-field[data-type="button"] .mbt-field-label label {
     display: none;
 }
+.mbt-metabox-tabs-wrapper .mbt-field[data-type="button"] .mbt-button.disabled {
+    pointer-events: none;
+}
 .mbt-metabox-tabs-wrapper .mbt-field[data-type="button"] .mbt-loader {
     display: none;
     line-height: 1.7;

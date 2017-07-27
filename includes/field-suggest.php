@@ -1,4 +1,5 @@
 <?php
+    $attrs = '';
     $class = 'mbt-suggest-field';
 
     // Custom field classes.
@@ -23,6 +24,11 @@
     if ( ! empty( $value ) ) {
         $class .= ' mbt-suggest-has-data';
     }
+
+    // TODO:
+    if ( isset( $field['ajax'] ) && $field['ajax'] ) {
+        $attrs = ' data-ajax="true" data-action="'.$field_action.'" data-options="'.esc_attr(json_encode($field_options)).'"';
+    }
 ?>
 <div id="<?php echo $id; ?>" class="<?php echo $class; ?>">
     <?php if ( isset( $field['placeholder'] ) && ! empty( $field['placeholder'] ) ) : ?>
@@ -38,10 +44,18 @@
             <li class="mbt-suggest-item" data-value="<?php echo $option_key; ?>">
                 <label for="<?php echo $id; ?>_<?php echo $option_key; ?>">
                     <input type="checkbox" id="<?php echo $id; ?>_<?php echo $option_key; ?>" class="mbt-input-field" name="<?php echo $id; ?>[]" value="<?php echo $option_key; ?>" data-label="<?php echo $option_value; ?>"<?php echo in_array( $option_key, $value ) ? ' checked="checked"' : ''; ?> />
-                    <?php echo $option_value; ?>
+                    <span><?php echo $option_value; ?></span>
                 </label>
             </li>
             <?php endforeach;
         endif; ?>
     </ul>
+    <script type="text/html" id="<?php echo $id; ?>_markup" class="mbt-suggest-item-html">
+        <li class="mbt-suggest-item" data-value="">
+            <label for="">
+                <input type="checkbox" id="" class="mbt-input-field" name="<?php echo $id; ?>[]" value="" data-label="" />
+                <span></span>
+            </label>
+        </li>
+    </script>
 </div>

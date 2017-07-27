@@ -495,14 +495,24 @@
             imgUrlField.val( '' );
         },
 
-        _suggestFieldTrigger: function(select)
+        _suggestFieldTrigger: function(field)
         {
-            var select          = $(select),
-                wrapper         = select.parents('.mbt-suggest-field'),
+            var field          = $(field),
+                wrapper         = field.parents('.mbt-suggest-field'),
+                ajax            = wrapper.data('ajax'),
                 activeClass     = 'mbt-suggest-field-active';
 
             wrapper.toggleClass(activeClass);
             wrapper.find('input.mbt-suggest-search-input').val('').focus().trigger('keyup');
+
+            if ( ajax ) {
+                var action  = wrapper.data('action'),
+                    options = wrapper.data('options');
+
+                if ( typeof options != 'object' ) {
+                    options = JSON.parse(options);
+                }
+            }
         },
 
         _suggestFieldChange: function(input)
@@ -513,7 +523,7 @@
                 wrapper = input.parents('.mbt-suggest-field');
 
             if ( input.is(':checked') ) {
-                var span = '<span class="mbt-selected-' + value + '" data-post-id="' + value + '">';
+                var span = '<span class="mbt-selected-' + value + '" data-selected="' + value + '">';
                 span += '<span class="mbt-selected-remove">×</span><span>' + label + '</span>';
                 span += '</span>';
 
@@ -541,12 +551,12 @@
 
         _suggestSelectedRemove: function(element)
         {
-            var selected    = $(element).parent(),
-                postID      = selected.data('post-id'),
-                wrapper     = selected.parents('.mbt-suggest-field');
+            var instance    = $(element).parent(),
+                selected    = instance.data('selected'),
+                wrapper     = instance.parents('.mbt-suggest-field');
 
-            wrapper.find('input.mbt-selected-' + postID).removeAttr('checked');
-            selected.remove();
+            wrapper.find('input.mbt-selected-' + selected).removeAttr('checked');
+            instance.remove();
         },
 
         _suggestFieldSearch: function(input)

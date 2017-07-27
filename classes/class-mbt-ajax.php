@@ -5,6 +5,7 @@ class MetaBox_Tabs_Ajax {
     static public function init()
     {
         add_action( 'wp_ajax_mbt_get_object_taxonomies', __CLASS__ . '::get_object_taxonomies' );
+        //add_action( 'wp_ajax_mbt_get_suggest_data', __CLASS__ . '::get_suggest_data' );
     }
 
     static public function get_object_taxonomies()

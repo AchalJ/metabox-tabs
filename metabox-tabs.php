@@ -104,7 +104,7 @@ if ( ! class_exists( 'MetaBox_Tabs', false ) ) {
         {
             $real_path = str_replace( '\\', '/', dirname( __FILE__ ) );
             $url = str_replace( $_SERVER['DOCUMENT_ROOT'], '', $real_path );
-    		$url = ( isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . $url;
+    		$url = ( isset( $_SERVER['HTTPS'] ) ? 'https' : 'http' ) . '://' . trailingslashit( $_SERVER['HTTP_HOST'] ) . $url;
 
     		return trailingslashit( $url );
         }
@@ -308,6 +308,8 @@ if ( ! class_exists( 'MetaBox_Tabs', false ) ) {
                 $settings->{$name} = $value;
             }
 
+            $settings->post_id = $post_id;
+
             return $settings;
         }
 
@@ -345,11 +347,12 @@ if ( ! class_exists( 'MetaBox_Tabs', false ) ) {
             foreach ( $fields as $name => $field ) {
 
                 $field_id = $prefix . $name;
+                $value = '';
 
                 if ( isset( $_POST[$field_id] ) ) {
                     if ( isset( $field['sanitize_custom'] ) && ! empty( $field['sanitize_custom'] ) ) {
                         if ( function_exists( $field['sanitize_custom'] ) ) {
-                            $value = call_user_func( $field['sanitize_custom'], $value );
+                            $value = call_user_func( $field['sanitize_custom'], $_POST[$field_id] );
                         }
                     }
                     else {
