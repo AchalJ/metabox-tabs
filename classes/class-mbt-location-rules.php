@@ -119,16 +119,18 @@ class MetaBox_Tabs_Location_Rules {
 
     static public function match_path( $patterns ) {
 
-		global $wp;
+        //global $wp;
 
-		$patterns_safe = array();
+        $patterns_safe = array();
 
-		// Get the request URI from WP
-		$url_request = $wp->request;
+        // Get the request URI from WP
+        list($url_request) = explode( '?', $_SERVER['REQUEST_URI'] ); //$wp->request;
 
-		// Append the query string
-		if ( ! empty( $_SERVER['QUERY_STRING'] ) )
-			$url_request .= '?' . $_SERVER['QUERY_STRING'];
+        $url_request = trim( trim( $url_request ), '/' );
+
+        // Append the query string
+        // if ( ! empty( $_SERVER['QUERY_STRING'] ) )
+        // 	$url_request .= '?' . $_SERVER['QUERY_STRING'];
 
 		$rows = explode( "\n", $patterns );
 
